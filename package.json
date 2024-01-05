@@ -2,7 +2,12 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "clear": "php artisan config:clear && php artisan cache:clear && php artisan route:clear && composer dump-autoload",
+        "repair": "php artisan migrate:fresh --seed && php artisan jwt:secret",
+        "queue": "php artisan cache:clear && php artisan config:clear && redis-cli FLUSHDB && php artisan queue:work",
+        "storage:link": "php artisan storage:link",
+        "kill": "sudo lsof -t -i tcp:8000 | xargs kill -9"
     },
     "devDependencies": {
         "axios": "^0.25",
